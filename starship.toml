@@ -1,0 +1,32 @@
+# Timeout for commands (milliseconds)
+command_timeout = 1000
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# Disable the line break on the CLI
+[line_break]
+disabled = true
+
+# Configure the style of the username
+[username]
+style_user = '#9737CE bold'
+style_root = 'red bold'
+format = '[$user]($style) '
+disabled = false
+show_always = true
+
+# Configure the style of the hostname
+[hostname]
+format = '[$ssh_symbol](bold blue) on [$hostname](bold #A06EBF) '
