@@ -8,6 +8,7 @@ Personal bash shell configuration and terminal customization using [Starship](ht
 - **`starship.toml`** – Starship prompt configuration
 - **`.bash_profile`** – Login shell settings
 - **`.vimrc`** – Vim configuration
+- **`setup`** – Setup script that automatically places configuration files in correct place
 
 ## Requirements
 
@@ -24,10 +25,8 @@ cd ~/dotfiles
 # Install Starship
 curl -sS https://starship.rs/install.sh | sh
 
-# Symlink configs
-ln -sf ~/dotfiles/.bashrc ~/.bashrc
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+# Run setup script for symlink configs
+./setup
 
 # Reload shell
 source ~/.bashrc
