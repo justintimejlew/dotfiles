@@ -7,6 +7,7 @@ Personal bash shell configuration and terminal customization using [Starship](ht
 - **`.bashrc`** – Bash shell configuration, aliases, and environment variables
 - **`starship.toml`** – Starship prompt configuration
 - **`.bash_profile`** – Login shell settings
+- **`.vimrc`** – Vim configuration
 
 ## Requirements
 
@@ -25,6 +26,7 @@ curl -sS https://starship.rs/install.sh | sh
 
 # Symlink configs
 ln -sf ~/dotfiles/.bashrc ~/.bashrc
+ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
 
 # Reload shell
