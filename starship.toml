@@ -26,7 +26,10 @@ style_root = 'red bold'
 format = '[$user]($style) '
 disabled = false
 show_always = true
+aliases = { "justintime" = "JustinTimeJLew" }
 
 # Configure the style of the hostname
 [hostname]
+ssh_only = false
 format = '[$ssh_symbol](bold blue) on [$hostname](bold #A06EBF) '
+aliases = { "Justins-iMac.local" = "YouTube" }
