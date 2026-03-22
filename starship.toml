@@ -32,4 +32,6 @@ aliases = { "justintime" = "JustinTimeJLew" }
 [hostname]
 ssh_only = false
 format = '[$ssh_symbol](bold blue) on [$hostname](bold #A06EBF) '
-aliases = { "Justins-iMac.local" = "YouTube" }
+trim_at = "-iMac.local"
+aliases = { "Justins" = "YouTube" }
+disabled = false
