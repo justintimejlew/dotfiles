@@ -56,9 +56,12 @@ set ignorecase		" Do case insensitive matching
 "set autowrite		" Automatically save before commands like :next and :make
 "set hidden		" Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes)
+set ai          	# Auto-indent: aligns new lines with the previous one
+set ts=2        	# Tab stop: makes a tab character look like 2 spaces
+set sw=2        	# Shift width: amount of whitespace for indentation commands
+set et          	# Expand tab: converts the Tab key into actual spaces
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
-
