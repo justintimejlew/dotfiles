@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Add Starship to local host
-yes | curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 # Create directory for dotfiles
 mkdir -p ~/.config
@@ -11,8 +11,7 @@ ln -sf ~/dotfiles/bashrc ~/.bashrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
 
-# Source the .bashrc file and clear screen
-source ~/.bashrc
+# Clear the screen and prompt
 clear
 
-echo "Dotfiles linked...Welcome J Lew!"
+echo "Dotfiles linked...Welcome J Lew! Run source ~/.bashrc now."
