@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Add Starship to local host
-curl -sS https://starship.rs/install.sh | sh -y
+yes | curl -sS https://starship.rs/install.sh | sh
 
 # Create directory for dotfiles
 mkdir -p ~/.config
