@@ -1,0 +1,4 @@
+# ~/.local/bin/md-link
+#!/bin/bash
+read -r url
+echo "[$url]($url)"

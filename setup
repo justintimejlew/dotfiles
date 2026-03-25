@@ -21,5 +21,6 @@ for file in "${dotfiles[@]}"; do
 done
 
 ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+ln -sf ~/dotfiles/local ~/.local
 
 echo "Dotfiles linked...Welcome J Lew! Run source ~/.bashrc now."
