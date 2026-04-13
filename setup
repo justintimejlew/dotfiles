@@ -6,6 +6,9 @@ curl -sS https://starship.rs/install.sh | sh -s -- -y
 # Create directory for dotfiles
 mkdir -p ~/.config
 
+# Clone the tmux plugins repo 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Link dotfiles to home directory
 link_dot_file() {
   local src="$1"
