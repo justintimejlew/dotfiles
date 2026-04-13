@@ -119,6 +119,18 @@ fi
 # Custom alias definitions
 alias cls='clear'
 
+# Kubernetes aliases
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kc='kubectx'
+alias kn='kubens'
+
+## source /etc/bash_completion 
+source <(kubectl completion bash)
+complete -o default -F __start_kubectl k
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 eval "$(starship init bash)"
+
 export PATH="$HOME/.local/bin:$PATH"
