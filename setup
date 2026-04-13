@@ -14,7 +14,7 @@ link_dot_file() {
   echo "Linked: $dest"
 }
 
-dotfiles=("bashrc" "vimrc")
+dotfiles=("bashrc" "vimrc" "tmux.conf")
 
 for file in "${dotfiles[@]}"; do
   link_dot_file "$HOME/dotfiles/$file" "$HOME/.$file"
