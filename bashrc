@@ -134,3 +134,7 @@ complete -o default -F __start_kubectl k
 eval "$(starship init bash)"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/justintime/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
