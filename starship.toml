@@ -35,3 +35,6 @@ format = '[$ssh_symbol](bold blue) on [$hostname](bold #A06EBF) '
 trim_at = "-iMac.local"
 aliases = { "JLew-Universe" = "YouTube" }
 disabled = false
+
+[git_status]
+ignore_submodules = true
