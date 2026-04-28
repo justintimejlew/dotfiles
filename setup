@@ -27,4 +27,4 @@ ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
 ln -sf ~/dotfiles/local ~/.local
 
 echo "Dotfiles linked...Welcome J Lew! Run source ~/.bashrc"
-echo "Don't forget to install tmux and kubectl"
+echo "Don't forget to install kubectl. Run tmux and press Ctrl+b -> I"
