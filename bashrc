@@ -89,7 +89,7 @@ fi
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -A'
+alias la='ls -lA'
 alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -134,6 +134,7 @@ complete -o default -F __start_kubectl k
 eval "$(starship init bash)"
 
 export PATH="$HOME/.local/bin:$PATH"
+export EDITOR="vim"
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/justintime/.rd/bin:$PATH"
