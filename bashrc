@@ -118,6 +118,7 @@ fi
 
 # Custom alias definitions
 alias cls='clear'
+alias skool='cd ~/Documents/GitHub/lab/kubernetes-fundamentals'
 
 # Kubernetes aliases
 alias k='kubectl'
