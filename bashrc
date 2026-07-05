@@ -119,6 +119,7 @@ fi
 # Custom alias definitions
 alias cls='clear'
 alias skool='cd ~/Documents/GitHub/lab/kubernetes-fundamentals'
+alias obsidian='flatpak run md.obsidian.Obsidian'
 
 # Kubernetes aliases
 alias k='kubectl'
