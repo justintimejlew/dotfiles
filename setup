@@ -9,6 +9,9 @@ mkdir -p ~/.config
 # Clone the tmux plugins repo 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+# Install required packages
+dnf install gh kubectl tmux vim -y
+
 # Link dotfiles to home directory
 link_dot_file() {
   local src="$1"
