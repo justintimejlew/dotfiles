@@ -32,8 +32,8 @@ aliases = { "justintime" = "JustinTime" }
 [hostname]
 ssh_only = false
 format = '[$ssh_symbol](bold blue) on [$hostname](bold #A06EBF) '
-trim_at = "-iMac.local"
-aliases = { "fedora" = "galaxy" }
+trim_at = "-"
+aliases = { "fedora" = "galaxy" , "JLew-Universe" = "Universe" }
 disabled = false
 
 [git_status]
