@@ -3,5 +3,6 @@
     "context": "..",
     "dockerfile": "Dockerfile"
   },
-  "postCreateCommand": "scripts/setup.sh"
+  "postCreateCommand": "scripts/setup.sh",
+  "runArgs": ["--hostname=devpod"]
 }
