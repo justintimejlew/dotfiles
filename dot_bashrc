@@ -163,6 +163,7 @@ if [[ "$TERM" == "xterm" ]]; then
 fi
 
 # Custom alias definitions
+alias la='ls -la'
 alias cls='clear'
 alias skool='cd ~/Documents/GitHub/lab/kubernetes-fundamentals'
 alias obsidian='flatpak run md.obsidian.Obsidian'
