@@ -5,3 +5,4 @@ bin
 scripts
 local
 mise
+bin/chezmoi
