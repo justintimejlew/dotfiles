@@ -137,6 +137,7 @@ eval "$(starship init bash)"
 
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR="vim"
+export KUBECONFIG=~/.kube/config
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/justintime/.rd/bin:$PATH"
