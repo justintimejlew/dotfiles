@@ -5,6 +5,13 @@ set -euo pipefail
 FONT_DIR="$HOME/.local/share/fonts/JetBrainsMono"
 
 if [ ! -d "$FONT_DIR" ]; then
+    if command -v dnf >/dev/null 2>&1; then
+        sudo dnf install -y fontconfig
+    elif command -v apt-get >/dev/null 2>&1; then
+        sudo apt-get update
+        sudo apt-get install -y fontconfig
+    fi
+
     mkdir -p "$HOME/.local/share/fonts"
     cd "$HOME/.local/share/fonts"
 
@@ -12,7 +19,11 @@ if [ ! -d "$FONT_DIR" ]; then
     unzip JetBrainsMono.zip -d JetBrainsMono
     rm JetBrainsMono.zip
 
-    fc-cache -fv
+    if command -v fc-cache >/dev/null 2>&1; then
+        fc-cache -fv
+    else
+        echo "fc-cache not available, skipping font cache refresh."
+    fi
 else
     echo "JetBrainsMono Nerd Font already installed, skipping."
 fi
