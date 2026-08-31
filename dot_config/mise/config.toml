@@ -1,2 +1,4 @@
 [tools]
 chezmoi = "latest"
+kubectl = "latest"
+starship = "latest"
