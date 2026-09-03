@@ -4,10 +4,6 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
 
-# ~~~~~~~~~~~~~~~ Starship ~~~~~~~~~~~~~~~~~~~~
-
-eval "$(starship init zsh)"
-
 # ~~~~~~~~~~~~~~~ Mise ~~~~~~~~~~~~~~~~~~~~~~~~
 
 if command -v mise > /dev/null ; then
@@ -28,6 +24,10 @@ if command -v nvim > /dev/null ; then
 fi
 
 export LANG="en_US.UTF-8"
+
+# ~~~~~~~~~~~~~~~ Starship ~~~~~~~~~~~~~~~~~~~~
+
+eval "$(starship init zsh)"
 
 # ~~~~~~~~~~~~~~~ Completion ~~~~~~~~~~~~~~~~~~~~~~~~
 
