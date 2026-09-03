@@ -4,13 +4,22 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
 
+# ~~~~~~~~~~~~~~~ Starship ~~~~~~~~~~~~~~~~~~~~
+
+eval "$(starship init zsh)"
+
+# ~~~~~~~~~~~~~~~ Mise ~~~~~~~~~~~~~~~~~~~~~~~~
+
+if command -v mise > /dev/null ; then
+  eval "$($HOME/.local/bin/mise activate zsh)"
+fi
+
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~
 
 # enable zsh vi-mode
 bindkey -v
 export KEYTIMEOUT=1 # make switching between modes faster
 
-eval "$(starship init zsh)"
 
 # ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -20,12 +29,6 @@ if command -v nvim > /dev/null ; then
 fi
 
 export LANG="en_US.UTF-8"
-
-# ~~~~~~~~~~~~~~~ Mise ~~~~~~~~~~~~~~~~~~~~~~~~
-
-if command -v mise > /dev/null ; then
-  eval "$($HOME/.local/bin/mise activate zsh)"
-fi
 
 # ~~~~~~~~~~~~~~~ Completion ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -56,7 +59,7 @@ fi
 if command -v lsd > /dev/null ; then
   alias ls="lsd"
   alias ll="ls -lgh"
-  alias la='ls -lathr'
-  alias lla='ls -lgha'
-  alias lt='ls --tree'
+  alias la="ls -lathr"
+  alias lla="ls -lgha"
+  alias lt="ls --tree"
 fi

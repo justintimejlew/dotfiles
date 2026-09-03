@@ -1,4 +1,5 @@
 [tools]
 bat = "latest"
 kubectl = "latest"
+lsd = "latest"
 starship = "latest"
