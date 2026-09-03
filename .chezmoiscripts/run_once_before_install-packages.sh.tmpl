@@ -11,8 +11,13 @@ fi
 
 # Install mise if not present
 if ! command -v mise >/dev/null 2>&1; then
-    curl https://mise.run | sh
+    curl -fsSL https://mise.run | sh
 fi
 
 # Install mise-managed tools (starship, kubectl, etc.)
+if [ ! -x "$HOME/.local/bin/mise" ]; then
+    echo "mise install failed" >&2
+    exit 1
+fi
+
 "$HOME/.local/bin/mise" install
