@@ -17,9 +17,8 @@ fi
 # ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~~~~
 
 # enable zsh vi-mode
-bindkey -v
+bindkey -e
 export KEYTIMEOUT=1 # make switching between modes faster
-
 
 # ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~~~~~~~~~~~~~~~~~~
 
