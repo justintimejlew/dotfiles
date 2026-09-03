@@ -8,3 +8,11 @@ elif command -v apt-get >/dev/null 2>&1; then
 else
     echo "No supported package manager found. Skipping package install."
 fi
+
+# Install mise if not present
+if ! command -v mise >/dev/null 2>&1; then
+    curl https://mise.run | sh
+fi
+
+# Install mise-managed tools (starship, kubectl, etc.)
+"$HOME/.local/bin/mise" install
