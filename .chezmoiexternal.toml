@@ -1,0 +1,17 @@
+[".local/bin/mise"]
+type = "file"
+executable = true
+url = "https://mise.jdx.dev/mise-latest-{{.chezmoi.os}}-{{.chezmoi.arch}}"
+
+# {{- if not .remote }}
+[".local/bin/devpod"]
+type = "file"
+executable = true
+url = "https://github.com/loft-sh/devpod/releases/download/v0.7.0-alpha.34/devpod-{{.chezmoi.os}}-{{.chezmoi.arch}}"
+# {{- end }}
+
+[".config/nvim"]
+type = "archive"
+url = "https://github.com/LazyVim/starter/archive/refs/heads/main.tar.gz"
+stripComponents = 1
+exclude = ["**/options.lua"]

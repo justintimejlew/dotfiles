@@ -12,8 +12,4 @@ if [ ! -d "$HOME/.zsh" ]; then
   mkdir -p "$HOME/.zsh"
 fi
 
-# if ! command -v chezmoi >/dev/null; then
-#  sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply git@github.com:justintimejlew/dotfiles.git
-# fi
-
 exit 0

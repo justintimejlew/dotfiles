@@ -6,10 +6,6 @@ if ! command -v mise >/dev/null 2>&1; then
     curl https://mise.run | sh
 fi
 
-if ! command -v chezmoi >/dev/null; then
-  sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply git@github.com:justintimejlew/dotfiles.git
-fi
-
 needed_pkgs=()
 for pkg in tmux vim curl; do
     if ! command -v "$pkg" >/dev/null 2>&1; then
