@@ -6,11 +6,20 @@ if ! command -v mise >/dev/null 2>&1; then
     curl https://mise.run | sh
 fi
 
-if command -v dnf >/dev/null 2>&1; then
-    sudo dnf install -y tmux vim curl libatomic
+needed_pkgs=()
+for pkg in tmux vim curl; do
+    if ! command -v "$pkg" >/dev/null 2>&1; then
+        needed_pkgs+=("$pkg")
+    fi
+done
+
+if [ ${#needed_pkgs[@]} -eq 0 ]; then
+    echo "All packages already present, skipping apt/dnf."
+elif command -v dnf >/dev/null 2>&1; then
+    sudo dnf install -y "${needed_pkgs[@]}" libatomic
 elif command -v apt-get >/dev/null 2>&1; then
     sudo apt-get update
-    sudo apt-get install -y tmux vim curl
+    sudo apt-get install -y "${needed_pkgs[@]}"
 else
     echo "No supported package manager found. Skipping package install."
 fi
