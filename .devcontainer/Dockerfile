@@ -9,7 +9,7 @@ RUN echo 'eval "$(mise activate bash)"' >> /home/vscode/.bashrc && \
 
 # Bake mise-managed tools into my image
 USER vscode
-COPY dot_config/mise/config.toml /home/vscode/.config/mise/config.toml
+COPY --chown=vscode:vscode dot_config/mise/config.toml /home/vscode/.config/mise/config.toml
 RUN mise trust /home/vscode/.config/mise/config.toml && \
     mise install
 ENV PATH="/home/vscode/.local/share/mise/shims:${PATH}"
