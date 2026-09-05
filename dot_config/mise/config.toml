@@ -1,9 +1,11 @@
 [tools]
 chezmoi = "latest"
 starship = "latest"
+kubectl = "latest"
 bat = "latest"
 lsd = "latest"
 fzf = "latest"
 neovim = "latest"
 node = "latest"
 lazygit = "latest"
+fd = "latest"
