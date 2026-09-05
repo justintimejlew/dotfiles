@@ -15,5 +15,6 @@ USER vscode
 COPY --chown=vscode:vscode dot_config/mise/config.toml /home/vscode/.config/mise/config.toml
 RUN mise trust /home/vscode/.config/mise/config.toml && \
     mise install
+RUN git clone https://github.com/tmux-plugins/tpm /home/vscode/.tmux/plugins/tpm
 ENV PATH="/home/vscode/.local/share/mise/shims:${PATH}"
 USER root
