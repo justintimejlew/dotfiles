@@ -1,4 +1,4 @@
-# ~~~~~~~~~~~~~~~ History ~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~ History ~~~~~~~~~~~~~~~~~~~~
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
@@ -6,24 +6,9 @@ SAVEHIST=100000
 
 setopt HIST_IGNORE_SPACE # do not save a command if it starts with a space
 setopt HIST_IGNORE_DUPS  # do not save duplicate commands
+setopt SHARE_HISTORY     # Share history between sessions
 
-# ~~~~~~~~~~~~~~~ Characters ~~~~~~~~~~~~~~~~~~
-
-export LANG="en_US.UTF-8"
-
-# ~~~~~~~~~~~~~~~ Mise ~~~~~~~~~~~~~~~~~~~~~~~~
-
-if command -v mise > /dev/null ; then
-  eval "$($HOME/.local/bin/mise activate zsh)"
-fi
-
-# ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~
-
-# enable zsh vi-mode
-bindkey -e
-export KEYTIMEOUT=1 # make switching between modes faster
-
-# ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~~
+# ~~~~~~~~~~~~~~~ Environment Variables ~~~~~~
 
 if command -v nvim > /dev/null ; then
   export EDITOR="nvim"
@@ -33,11 +18,54 @@ elif command -v vim > /dev/null ; then
   export VISUAL="vim"
 fi
 
-# ~~~~~~~~~~~~~~~ Starship ~~~~~~~~~~~~~~~~~~~~
+export LANG="en_US.UTF-8"
+
+# ~~~~~~~~~~~~~~~ Prompt ~~~~~~~~~~~~~~~~~~~~~
+
+# enable zsh vi-mode
+bindkey -e
+export KEYTIMEOUT=1 # make switching between modes faster
+
+# ~~~~~~~~~~~~~~~ Directories ~~~~~~~~~~~~~~~~
+
+export REPOS="$HOME/Documents/GitHub/"
+export GITUSER="justintimejlew"
+export DOTFILES="$HOME/.local/share/chezmoi"
+export HOMELAB="$REPOS/homelab"
+export SCRIPTS="$DOTFILES/scripts"
+export OBSIDIAN="$HOME/Documents/obsidian/second-brain"
+
+# ~~~~~~~~~~~~~~~ Mise ~~~~~~~~~~~~~~~~~~~~~~~
+
+if command -v mise > /dev/null ; then
+  eval "$($HOME/.local/bin/mise activate zsh)"
+fi
+
+# ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~
+
+setopt extended_glob null_glob
+
+path=(
+  $path
+  $HOME/bin
+  $HOME/.local/bin
+  $SCRIPTS
+  $HOME/.rd/bin
+  /home/vscode/.local/bin
+  /root/.local/bin
+)
+
+# Remove duplicate entries and non-existent Directories
+typeset -U path
+path=($^path(N-/))
+
+export PATH
+
+# ~~~~~~~~~~~~~~~ Starship ~~~~~~~~~~~~~~~~~~~
 
 eval "$(starship init zsh)"
 
-# ~~~~~~~~~~~~~~~ Completion ~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~ Completion ~~~~~~~~~~~~~~~~~
 
 autoload -Uz compinit && compinit
 
@@ -53,12 +81,20 @@ if command -v mise > /dev/null ; then
   source <(mise completion zsh)
 fi
 
-# ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~
 
 alias v=nvim
 alias gp="git pull"
+alias gs="git status"
 alias lg=lazygit
 alias cls=clear
+
+# Directories
+alias scripts="cd $SCRIPTS"
+alias skool='cd $REPOS/lab/kubernetes-fundamentals'
+alias hl="cd $HOMELAB"
+alias notes="cd \$OBSIDIAN"
+alias chez="cd $DOTFILES"
 
 if command -v bat > /dev/null ; then
   alias cat="bat"
@@ -77,12 +113,16 @@ if command -v lsd > /dev/null ; then
   alias lt="ls --tree"
 fi
 
+# Kubernetes
 if command -v kubectl > /dev/null ; then
   source <(kubectl completion zsh)
   alias k="kubectl"
+  alias kgp="kubectl get pods"
 fi
 
-# enable fzf autocompletion and key-bindings if found
-if command -v fzf > /dev/null ; then
-  source <(fzf --zsh)
-fi
+# DevPods
+alias ds="devpod ssh"
+
+# Bluetooth Connection
+alias bth="bluetoothctl connect 84:9D:4B:1E:47:20"
+alias bthd="bluetoothctl disconnect 84:9D:4B:1E:47:20"
