@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+
+# Only applies to Fedora/SELinux hosts — not relevant inside the devcontainer itself
+if ! command -v semanage >/dev/null 2>&1; then
+    exit 0
+fi
+
+DEVPOD_WORKSPACES="$HOME/.devpod"  # adjust to your actual devpod workspace path
+
+if ! sudo semanage fcontext -l | grep -q "^${DEVPOD_WORKSPACES}(/.*)\?.*container_file_t"; then
+    sudo semanage fcontext -a -t container_file_t "${DEVPOD_WORKSPACES}(/.*)?"
+fi
+
+sudo restorecon -Rv "$DEVPOD_WORKSPACES"
