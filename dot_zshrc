@@ -58,6 +58,7 @@ fi
 alias v=nvim
 alias gp="git pull"
 alias lg=lazygit
+alias cls=clear
 
 if command -v bat > /dev/null ; then
   alias cat="bat"
