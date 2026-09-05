@@ -7,7 +7,7 @@ if ! command -v mise >/dev/null 2>&1; then
 fi
 
 needed_pkgs=()
-for pkg in tmux vim curl; do
+for pkg in tmux vim curl zsh; do
     if ! command -v "$pkg" >/dev/null 2>&1; then
         needed_pkgs+=("$pkg")
     fi
@@ -22,4 +22,8 @@ elif command -v apt-get >/dev/null 2>&1; then
     sudo apt-get install -y "${needed_pkgs[@]}"
 else
     echo "No supported package manager found. Skipping package install."
+fi
+
+if [ "$SHELL" != "$(command -v zsh)" ]; then
+    sudo chsh -s "$(command -v zsh)" "$(whoami)"
 fi

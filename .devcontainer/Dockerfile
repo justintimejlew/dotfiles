@@ -1,5 +1,8 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
+# Bake tool packages into my image
+RUN apt-get update && apt-get install -y tmux vim curl zsh && rm -rf /var/lib/apt/lists/*
+
 # Install mise directly
 RUN curl https://mise.run | MISE_INSTALL_PATH=/usr/local/bin/mise sh
 
