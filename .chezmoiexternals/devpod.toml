@@ -1,4 +1,4 @@
-{{- if not .remote }}
+{{- if not (env "DEVPOD") }}
 [".local/bin/devpod"]
 type = "file"
 executable = true
