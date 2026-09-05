@@ -84,6 +84,8 @@ fi
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~
 
 alias v=nvim
+alias vim=nvim
+alias vi=vim
 alias gp="git pull"
 alias gs="git status"
 alias lg=lazygit
@@ -122,6 +124,7 @@ fi
 
 # DevPods
 alias ds="devpod ssh"
+alias dr="devpod up . --recreate"
 
 # Bluetooth Connection
 alias bth="bluetoothctl connect 84:9D:4B:1E:47:20"
