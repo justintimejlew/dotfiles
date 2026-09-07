@@ -26,3 +26,5 @@ jobs:
         file: .devcontainer/Dockerfile
         push: true
         tags: ghcr.io/justintimejlew/dotfiles-devcontainer:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
