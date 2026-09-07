@@ -1,5 +1,5 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "remoteUser": "vscode",
-  "updateRemoteUserUID": true
+  "image": "ghcr.io/justintimejlew/dotfiles-devcontainer:latest",
+  "postCreateCommand": "scripts/setup.sh",
+  "runArgs": ["--hostname=devpod"]
 }
