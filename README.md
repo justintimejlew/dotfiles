@@ -42,14 +42,13 @@ chezmoi init --apply https://github.com/justintimejlew/dotfiles.git && exec zsh 
 
 ### DevPod / DevContainer
 
-Clone the repo to home directory:
+Simply run alias command:
 
 ```bash
-git clone git@github.com:justintimejlew/dotfiles.git
-devpod up . --ide none
+devpod-init
 ```
 
-**NOTE:** The setup runs automatically to build the DevPod according to the `postCreateCommand` (`scripts/setup.sh`). Then the devcontainer image ([`.devcontainer/Dockerfile`](.devcontainer/Dockerfile)) bakes in zsh/tmux/vim, mise, and all mise-managed tools ahead of time for fast container creation. `.chezmoi.toml.tmpl` detects the remote/container environment and skips steps that don't apply there (DevPod CLI install, SELinux config, git autoCommit/autoPush, interactive shell change).
+**NOTE:** The setup runs automatically to build the DevPod according to my devcontainer image ([`dotfiles-devcontainer`](https://github.com/justintimejlew/dotfiles/pkgs/container/dotfiles-devcontainer)) bakes in zsh/tmux/vim, mise, and all mise-managed tools ahead of time for fast container creation. `.chezmoi.toml.tmpl` detects the remote/container environment and skips steps that don't apply there (DevPod CLI install, SELinux config, git autoCommit/autoPush, interactive shell change).
 
 ### Updating
 
@@ -113,5 +112,6 @@ fc-cache -fv
 - **Mise activation order:** `mise activate` must run *before* `starship init` in `dot_zshrc`, or the starship shim won't be on `PATH` yet.
 - **SELinux + DevPod:** DevPod workspace directories need the `container_file_t` SELinux context on Fedora hosts, applied via `semanage fcontext` + `restorecon` rather than disabling SELinux outright.
 - **Distro-aware scripting:** DevPod containers are Debian/Ubuntu-based even when the host is Fedora — scripts branch on `dnf`/`apt-get` availability rather than assuming one distro.
+- **Personalized Docker Image:** Creating my own Dockerfile image via GitHub Actions helps to speed up deployment of my `devpod up` process on new servers maintaining consistent work environment. 
 
 > Maintained by [justintimejlew](https://github.com/justintimejlew)
