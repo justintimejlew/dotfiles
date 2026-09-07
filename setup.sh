@@ -2,8 +2,10 @@
 # This script is used to create DevPods.
 set -euo pipefail
 
-if ! command -v chezmoi >/dev/null; then
-  sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply https://github.com/justintimejlew/dotfiles.git
+if [ ! -d "$HOME/.local/share/chezmoi" ]; then
+  chezmoi init --apply https://github.com/justintimejlew/dotfiles.git
+else
+  chezmoi apply
 fi
 
 exit 0
