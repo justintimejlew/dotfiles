@@ -86,7 +86,7 @@ fi
 devpod-init() {
   mkdir -p .devcontainer
   cp "$HOME/.config/devpod/devcontainer.json" .devcontainer/devcontainer.json
-  devpod up . --ide none --dotfiles git@github.com:justintimejlew/dotfiles.git
+  devpod up . --ide none --dotfiles https://github.com/justintimejlew/dotfiles.git
 }
 
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~
