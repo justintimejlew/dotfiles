@@ -81,6 +81,14 @@ if command -v mise > /dev/null ; then
   source <(mise completion zsh)
 fi
 
+# ~~~~~~~~~~~~~~~ DevPods ~~~~~~~~~~~~~~~~~~~~
+
+devpod-init() {
+  mkdir -p .devcontainer
+  cp "$HOME/.config/devpod/devcontainer.json" .devcontainer/devcontainer.json
+  devpod up . --ide none --dotfiles git@github.com:justintimejlew/dotfiles.git
+}
+
 # ~~~~~~~~~~~~~~~ Aliases ~~~~~~~~~~~~~~~~~~~~
 
 alias v=nvim
