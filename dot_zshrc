@@ -124,6 +124,8 @@ if command -v lsd > /dev/null ; then
 fi
 
 # Kubernetes
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
 if command -v kubectl > /dev/null ; then
   source <(kubectl completion zsh)
   alias k="kubectl"
