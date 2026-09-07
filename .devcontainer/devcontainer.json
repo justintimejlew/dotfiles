@@ -1,8 +1,5 @@
 {
-  "build": {
-    "context": "..",
-    "dockerfile": "Dockerfile"
-  },
+  "image": "ghcr.io/justintimejlew/dotfiles-devcontainer:latest",
   "postCreateCommand": "scripts/setup.sh",
   "runArgs": ["--hostname=devpod"]
 }
