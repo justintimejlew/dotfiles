@@ -137,5 +137,8 @@ alias ds="devpod ssh"
 alias dr="devpod up . --recreate"
 
 # Bluetooth Connection
-alias bth="bluetoothctl connect 84:9D:4B:1E:47:20"
-alias bthd="bluetoothctl disconnect 84:9D:4B:1E:47:20"
+alias bth="bluetoothctl connect 84:9D:4B:1E:47:20"      # Connect Headphones
+alias bthd="bluetoothctl disconnect 84:9D:4B:1E:47:20"  # Disconnect Headphones
+
+alias bta="bluetoothctl connect 20:78:CD:75:EA:9F"      # Connect Airpods   
+alias btad="bluetoothctl disconnect 20:78:CD:75:EA:9F"  # Disconnect Airpods
