@@ -4,20 +4,14 @@ set -euo pipefail
 
 needed_pkgs=()
 for pkg in tmux vim curl zsh; do
-    if ! command -v "$pkg" >/dev/null 2>&1; then
-        needed_pkgs+=("$pkg")
-    fi
+    command -v "$pkg" >/dev/null 2>&1 || needed_pkgs+=("$pkg")
 done
 
-if [ ${#needed_pkgs[@]} -eq 0 ]; then
+lib_needed=false
+dpkg -s libatomic1 >/dev/null 2>&1 || lib_needed=true
+
+if [ ${#needed_pkgs[@]} -eq 0 ] && [ "$lib_needed" = false ]; then
     echo "All packages already present, skipping apt/dnf."
-    # still ensure libatomic is present even if nothing else is needed
-    if command -v dnf >/dev/null 2>&1; then
-        sudo dnf install -y libatomic
-    elif command -v apt-get >/dev/null 2>&1; then
-        sudo apt-get update
-        sudo apt-get install -y libatomic1
-    fi
 elif command -v dnf >/dev/null 2>&1; then
     sudo dnf install -y "${needed_pkgs[@]}" libatomic
 elif command -v apt-get >/dev/null 2>&1; then
