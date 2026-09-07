@@ -13,6 +13,6 @@ for DIR in "${PROJECT_DIRS[@]}"; do
     if ! sudo semanage fcontext -l | grep -q "^${DIR}(/.*)\?.*container_file_t"; then
     sudo semanage fcontext -a -t container_file_t "${DIR}(/.*)?"
     fi
-    sudo restorecon -Rv "$DEVPOD_WORKSPACES"
+    sudo restorecon -Rv "$DIR"
   fi
 done
