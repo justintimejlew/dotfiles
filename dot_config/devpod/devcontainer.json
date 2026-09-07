@@ -1,7 +1,5 @@
 {
   "image": "ghcr.io/justintimejlew/dotfiles-devcontainer:latest",
-  "remoteUser": "vscode",
-  "updateRemoteUserUID": true,
   "runArgs": [
     "--hostname=devpod"
   ]
