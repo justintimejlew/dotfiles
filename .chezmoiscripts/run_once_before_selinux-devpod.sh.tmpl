@@ -6,10 +6,13 @@ if ! command -v semanage >/dev/null 2>&1; then
     exit 0
 fi
 
-DEVPOD_WORKSPACES="$HOME/.devpod"  # adjust to your actual devpod workspace path
+PROJECT_DIRS=("$HOME/.devpod" "$HOME/Documents/GitHub")
 
-if ! sudo semanage fcontext -l | grep -q "^${DEVPOD_WORKSPACES}(/.*)\?.*container_file_t"; then
-    sudo semanage fcontext -a -t container_file_t "${DEVPOD_WORKSPACES}(/.*)?"
-fi
-
-sudo restorecon -Rv "$DEVPOD_WORKSPACES"
+for DIR in "${PROJECT_DIRS[@]}"; do
+  if [ -d "$DIR" ]; then
+    if ! sudo semanage fcontext -l | grep -q "^${DIR}(/.*)\?.*container_file_t"; then
+    sudo semanage fcontext -a -t container_file_t "${DIR}(/.*)?"
+    fi
+    sudo restorecon -Rv "$DEVPOD_WORKSPACES"
+  fi
+done
