@@ -1,46 +1,55 @@
 # dotfiles 🐚
 
-Personal shell configuration and terminal customization, managed with [chezmoi](https://www.chezmoi.io/) and [mise](https://mise.jdx.dev/).
+My personal shell configuration and terminal customization, managed with [chezmoi](https://www.chezmoi.io/) and [mise](https://mise.jdx.dev/). Primarily used inside a [DevPod](https://devpod.sh/) devcontainer.
 
 ## What's Included
 
-- **`dot_bashrc`** – Bash shell configuration, aliases, and environment variables
-- **`dot_config/starship.toml`** – Starship prompt configuration
-- **`dot_vimrc`** – Vim configuration
+- **`.devcontainer/`** – Dockerfile + devcontainer.json for DevPod, with tools baked into the image for fast container spin-up
+- **`.chezmoiscripts/`** – Automated setup scripts run during `chezmoi apply`:
+  - `run_once_before_install-packages.sh.tmpl` – installs zsh/tmux/vim/curl + libatomic(1), installs mise, sets zsh as my default shell
+  - `run_once_before_selinux-devpod.sh.tmpl` – configures SELinux `container_file_t` context for my DevPod workspaces on my Fedora hosts only
+  - `run_onchange_after_install_packages.sh.tmpl` – trusts and installs mise-managed tools
+- **`.chezmoiexternal.toml`** – External resources chezmoi pulls in automatically (mise binary, devpod CLI, LazyVim config)
+- **`.chezmoi.toml.tmpl`** – Detects local vs. remote (DevPod/container) environment and adjusts behavior accordingly
+- **`dot_zshrc`** – Zsh shell configuration, aliases, environment variables (default shell)
 - **`dot_tmux.conf`** – Tmux configuration
-- **`mise.toml`** – Tool version management (e.g. Starship, kubectl)
-- **`.chezmoiscripts/`** – Automated setup scripts (package installs, tmux plugin manager, etc.) that run during `chezmoi apply`
-- **`.chezmoiexternals/`** – External resources chezmoi pulls in automatically (e.g. tpm)
-- **`bin/`, `local/bin/`** – Personal scripts, symlinked into `PATH`
-
-## Requirements
-
-- Bash 4.0+
-- [chezmoi](https://www.chezmoi.io/) (auto-installed by the one-line install below if missing)
-- [mise](https://mise.jdx.dev/) (manages Starship/kubectl versions; installed via `.chezmoiscripts`)
-- A [Nerd Font](https://www.nerdfonts.com/) (recommended for icons/glyphs)
+- **`dot_config/nvim`** – Neovim config (LazyVim, pulled in via `.chezmoiexternal.toml`)
+- **`dot_config/mise/config.toml`** – Tool version management (starship, kubectl, neovim, node, bat, lsd, fzf, lazygit, ripgrep, usage, etc.)
+- **`dot_config/starship.toml`** – Starship prompt configuration
+- **`local/bin/`** – My personal scripts, symlinked into `PATH`
+- **`dot_bashrc`** – Bash shell configuration, aliases, and environment variables
+- **`dot_vimrc`** – Vim configuration
 
 ## Installation
 
-Install chezmoi and apply this repo in one step:
+### Local machine (Fedora / Ubuntu / Debian)
+
+I simply have to run the following command to install chezmoi, my packages, mise, set zsh as default shell, and apply all my dotfiles:
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply justintimejlew
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin" init --apply https://github.com/justintimejlew/dotfiles.git && exec zsh -l
 ```
 
-If chezmoi is already installed:
+If chezmoi is already installed, I can simply run:
 
 ```bash
-chezmoi init --apply justintimejlew
+chezmoi init --apply https://github.com/justintimejlew/dotfiles.git && exec zsh -l
 ```
 
-This clones the repo into `~/.local/share/chezmoi`, runs the setup scripts in `.chezmoiscripts/` (installing packages, tmux plugin manager, etc.), and places dotfiles at their real targets — `~/.bashrc`, `~/.config/starship.toml`, `~/.vimrc`, `~/.tmux.conf` — with no manual cloning or symlinking required.
+**NOTE:**
+- Confirm local directories are owned by `$USER`.
+- `sudo` permission is required to install packages and to change the shell.
 
-Reload your shell once it's done:
+### DevPod / DevContainer
+
+Clone the repo to home directory:
 
 ```bash
-source ~/.bashrc
+git clone git@github.com:justintimejlew/dotfiles.git
+devpod up . --ide none
 ```
+
+**NOTE:** The setup runs automatically to build the DevPod according to the `postCreateCommand` (`scripts/setup.sh`). Then the devcontainer image ([`.devcontainer/Dockerfile`](.devcontainer/Dockerfile)) bakes in zsh/tmux/vim, mise, and all mise-managed tools ahead of time for fast container creation. `.chezmoi.toml.tmpl` detects the remote/container environment and skips steps that don't apply there (DevPod CLI install, SELinux config, git autoCommit/autoPush, interactive shell change).
 
 ### Updating
 
@@ -52,37 +61,39 @@ chezmoi update
 
 ### Editing
 
-Edit a dotfile through chezmoi so changes flow back to the source repo:
+The best practice is to only edit a dotfile through chezmoi so changes flow back to this repo:
 
 ```bash
-chezmoi edit ~/.bashrc
+chezmoi edit ~/.zshrc
 chezmoi apply
 ```
+- `chez` is my alias to access the chezmoi files.
 
-Then commit and push from the source directory:
+Any changes I make, I commit and push from the source directory (which is why I have so many commits, lol):
 
 ```bash
-cd $(chezmoi source-path)
 git add .
-git commit -m "Update bashrc"
+git commit -m "Update zshrc"
 git push
 ```
 
----
+## Nerd Font Setup (Optional)
 
-## Nerd Font Setup
-
-A Nerd Font is required to render icons and glyphs in the Starship prompt. **[JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)** is recommended for its clean look and excellent glyph coverage.
+I used **[JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads)** because it is recommended for its clean look and extensive glyph coverage.
 
 ### macOS
+
+Run the following:
 
 ```bash
 brew install --cask font-jetbrains-mono-nerd-font
 ```
 
-Then set your terminal font to **JetBrainsMono Nerd Font** in your terminal's preferences.
+Then set the terminal font to **JetBrainsMono Nerd Font** in terminal's preferences.
 
 ### Linux (manual install)
+
+Run the following:
 
 ```bash
 mkdir -p ~/.local/share/fonts
@@ -97,12 +108,10 @@ rm JetBrainsMono.zip
 fc-cache -fv
 ```
 
-Then set your terminal emulator's font to **JetBrainsMono Nerd Font Mono**.
+## My Lessons Learned
 
-### Windows (Terminal)
-
-1. Download **JetBrainsMono** from [nerdfonts.com](https://www.nerdfonts.com/font-downloads)
-2. Unzip → select all `.ttf` files → right-click → **Install for all users**
-3. Open Windows Terminal → Settings → your profile → Appearance → set font to `JetBrainsMono Nerd Font Mono`
+- **Mise activation order:** `mise activate` must run *before* `starship init` in `dot_zshrc`, or the starship shim won't be on `PATH` yet.
+- **SELinux + DevPod:** DevPod workspace directories need the `container_file_t` SELinux context on Fedora hosts, applied via `semanage fcontext` + `restorecon` rather than disabling SELinux outright.
+- **Distro-aware scripting:** DevPod containers are Debian/Ubuntu-based even when the host is Fedora — scripts branch on `dnf`/`apt-get` availability rather than assuming one distro.
 
 > Maintained by [justintimejlew](https://github.com/justintimejlew)
