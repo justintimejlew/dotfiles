@@ -2,6 +2,7 @@
 chezmoi = "latest"
 starship = "latest"
 kubectl = "latest"
+k9s = "latest"
 bat = "latest"
 lsd = "latest"
 fzf = "latest"
