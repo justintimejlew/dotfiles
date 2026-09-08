@@ -105,6 +105,7 @@ alias skool='cd $REPOS/lab/kubernetes-fundamentals'
 alias hl="cd $HOMELAB"
 alias notes="cd \$OBSIDIAN"
 alias chez="cd $DOTFILES"
+alias nvs="cd ~/.local/state/nvim/swap"
 
 if command -v bat > /dev/null ; then
   alias cat="bat"
