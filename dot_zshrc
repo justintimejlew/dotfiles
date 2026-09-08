@@ -41,6 +41,11 @@ if command -v mise > /dev/null ; then
   eval "$($HOME/.local/bin/mise activate zsh)"
 fi
 
+# ~~~~~~~~~~~~~~~ Homebrew ~~~~~~~~~~~~~~~~~~~
+
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"'
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
 # ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~
 
 setopt extended_glob null_glob
