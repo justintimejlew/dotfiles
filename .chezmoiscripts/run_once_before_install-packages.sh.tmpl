@@ -10,13 +10,20 @@ done
 lib_needed=false
 dpkg -s libatomic1 >/dev/null 2>&1 || lib_needed=true
 
-if [ ${#needed_pkgs[@]} -eq 0 ] && [ "$lib_needed" = false ]; then
-    echo "All packages already present, skipping apt/dnf."
+group_needed=false
+if command -v dnf >/dev/null 2>&1; then
+    dnf group list --installed 2>/dev/null | grep -qi "Development Tools" || group_needed=true
+fi
+
+
+if [ ${#needed_pkgs[@]} -eq 0 ] && [ "$lib_needed" = false ] && [ "$group_needed" = false ]; then
+    echo "All packages already present, skipping apt/dnf update."
 elif command -v dnf >/dev/null 2>&1; then
     sudo dnf install -y "${needed_pkgs[@]}" libatomic
+    [ "$group_needed" = true ] && sudo dnf group install -y "development-tools"
 elif command -v apt-get >/dev/null 2>&1; then
     sudo apt-get update
-    sudo apt-get install -y "${needed_pkgs[@]}" libatomic1
+    sudo apt-get install -y "${needed_pkgs[@]}" libatomic1 build-essential
 else
     echo "No supported package manager found. Skipping package install."
 fi
