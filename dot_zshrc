@@ -98,7 +98,7 @@ alias gp="git pull"
 alias gs="git status"
 alias lg=lazygit
 alias cls=clear
-alias cpt="/opt/pt/packettracer.AppImage"
+alias cpt="/opt/pt/squashfs-root/AppRun"
 
 # Directories
 alias scripts="cd $SCRIPTS"
