@@ -35,12 +35,6 @@ export HOMELAB="$REPOS/homelab"
 export SCRIPTS="$DOTFILES/scripts"
 export OBSIDIAN="$HOME/Documents/obsidian/second-brain"
 
-# ~~~~~~~~~~~~~~~ Mise ~~~~~~~~~~~~~~~~~~~~~~~
-
-if command -v mise > /dev/null ; then
-  eval "$($HOME/.local/bin/mise activate zsh)"
-fi
-
 # ~~~~~~~~~~~~~~~ Path Configuration ~~~~~~~~~
 
 setopt extended_glob null_glob
@@ -60,6 +54,12 @@ typeset -U path
 path=($^path(N-/))
 
 export PATH
+
+# ~~~~~~~~~~~~~~~ Mise ~~~~~~~~~~~~~~~~~~~~~~~
+
+if command -v mise > /dev/null ; then
+  eval "$($HOME/.local/bin/mise activate zsh)"
+fi
 
 # ~~~~~~~~~~~~~~~ Starship ~~~~~~~~~~~~~~~~~~~
 
