@@ -146,4 +146,9 @@ alias bthd="bluetoothctl disconnect 84:9D:4B:1E:47:20"  # Disconnect Headphones
 
 alias bta="bluetoothctl connect 20:78:CD:75:EA:9F"      # Connect Airpods   
 alias btad="bluetoothctl disconnect 20:78:CD:75:EA:9F"  # Disconnect Airpods
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+for brew in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+  if [ -x "$brew" ]; then
+    eval "$("$brew" shellenv zsh)"
+    break
+  fi
+done
