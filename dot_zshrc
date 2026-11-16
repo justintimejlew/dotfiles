@@ -104,6 +104,7 @@ alias cpt="/opt/pt/squashfs-root/AppRun"
 alias scripts="cd $SCRIPTS"
 alias skool='cd $REPOS/lab/kubernetes-fundamentals'
 alias hl="cd $HOMELAB"
+alias site="cd ~/Documents/GitHub/justintimejlew-site"
 alias notes="cd \$OBSIDIAN"
 alias chez="cd $DOTFILES"
 alias nvs="cd ~/.local/state/nvim/swap"
